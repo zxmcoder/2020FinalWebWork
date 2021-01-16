@@ -1,0 +1,66 @@
+<!-- 左侧菜单开始 -->
+<div class="left-nav">
+    <div id="side-nav">
+      <ul id="nav">
+          <li class="list" current>
+              <a href="{:url('admin/main/index')}">
+                  <i class="iconfont">&#xe761;</i>
+                  欢迎页面
+                  <i class="iconfont nav_right">&#xe697;</i>
+              </a>
+          </li>
+          {if condition="session('role')=='worker'"}
+          
+          <li class="list">
+              <a href="javascript:;">
+                  <i class="iconfont">&#xe70b;</i>
+                  Worker管理权限
+                  <i class="iconfont nav_right">&#xe697;</i>
+              </a>
+              <ul class="sub-menu">
+                  <li>
+                      <a href="{:url('admin/user/showuser')}">
+                          <i class="iconfont">&#xe6a7;</i>
+                          用户列表
+                      </a>
+                  </li>
+            </ul>
+            <ul class="sub-menu">
+                <li>
+                    <a href="{:url('admin/ticket/showticket')}">
+                        <i class="iconfont">&#xe6a7;</i>
+                        火车票列表
+                    </a>
+                </li>
+            </ul>
+          </li>
+          {/if}
+          {if condition="session('role')=='superadmin'"}
+          <li class="list">
+            <a href="javascript:;">
+                <i class="iconfont">&#xe70b;</i>
+                SuperAdmin权限
+                <i class="iconfont nav_right">&#xe697;</i>
+            </a>
+            <ul class="sub-menu">
+                <li>
+                    <a href="{:url('admin/worker/showworker')}">
+                        <i class="iconfont">&#xe6a7;</i>
+                        Worker列表
+                    </a>
+                </li>
+          </ul>
+          <ul class="sub-menu">
+              <li>
+                  <a href="{:url('admin/log/showlog')}">
+                      <i class="iconfont">&#xe6a7;</i>
+                      日志列表
+                  </a>
+              </li>
+          </ul>
+        </li>
+        {/if}
+      </ul>
+    </div>
+  </div>
+  <!-- 左侧菜单结束 -->

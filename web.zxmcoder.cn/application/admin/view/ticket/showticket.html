@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>火车票管理系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/css/font.css">
+	<link rel="stylesheet" href="/static/css/xadmin.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+
+</head>
+<body>
+    <!-- 顶部开始 -->
+    {include file="menu/head" /}
+    <!-- 顶部结束 -->
+    <!-- 中部开始 -->
+    <div class="wrapper">
+        <!-- 左侧菜单开始 -->
+        {include file="menu/left" /}
+        <!-- 左侧菜单结束 -->
+        <!-- 右侧主体开始 -->
+        <div class="page-content">
+          <div class="content">
+            <!-- 右侧内容框架，更改从这里开始 -->
+            <form class="layui-form xbs" action="{:url('admin/ticket/findticket')}" method="POST">
+                <div class="layui-form-pane" style="text-align: center;">
+                  
+                    <div class="layui-form-item" style="display: inline-block;">
+                        <div class="layui-input-inline">
+                            <input type="text" name=ticket_id  placeholder="查询火车票" autocomplete="off" class="layui-input" lay-verify="required">
+                        </div>
+                        <div class="layui-input-inline" style="width:80px">
+                            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                        </div>
+                    </div>
+                </div> 
+            </form>
+            <xblock><button class="layui-btn" onclick="member_add('添加火车票','addticket.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button>
+            <table class="layui-table">
+            <thead>
+                <tr>
+                    <th>火车票</th>
+                    <th>剩余数量</th>
+                    <th>操作</th>
+                </tr>
+                {volist name="tickets" id="vo"}
+                <tr>
+                    <td>{$vo.ticket_id}</td>
+                    <td>{$vo.ticket_num}</td>
+                    <td class="td-manage">
+                        <a title="修改火车票数量" href="updateticket?ticket_id={$vo.ticket_id}"
+                        class="ml-5" style="text-decoration:none">
+                            <i class="layui-icon">&#xe642;</i>
+                        </a>
+                        <a title="删除当前火车票" href="delticket?ticket_id={$vo.ticket_id}"
+                        style="text-decoration:none">
+                            <i class="layui-icon">&#xe640;</i>
+                        </a>
+                    </td>
+                </tr>
+                {/volist}
+            </thead>
+            </table>
+            <!-- 右侧内容框架，更改从这里结束 -->
+          </div>
+        </div>
+        <!-- 右侧主体结束 -->
+    </div>
+    <!-- 中部结束 -->
+    <script>
+        /*房间-添加*/
+        function member_add(title,url,w,h){
+            x_admin_show(title,url,w,h);
+        }
+    </script>
+</body>
+</html>
